@@ -1,0 +1,20 @@
+
+.button {
+    background-color: lightgreen;
+    color: black;
+    font-size: large;
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid black;
+    transition-duration: 0.6s;
+}
+
+.button:hover, .button:focus {
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+
+
+
+
