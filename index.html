@@ -10,17 +10,21 @@
 
         <body>
 
-        
-          <nav class="navbar navbar-light bg-dark fixed-top">
-            <div class="navbar-brand">Pokemon Modal</div>
-              <form class="form-inline">
-                <div class="d-inline-flex">
-                <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-warning my-0 my-sm-0" type="submit">Search</button>
-                </div>
-              </form>
-          </nav>
-
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <nav class="navbar navbar-light bg-dark fixed-top">
+                <div class="navbar-brand">Pokemon Modal</div>
+                  <form class="form-inline">
+                    <div class="d-inline-flex">
+                    <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-0 my-sm-0" type="submit">Search</button>
+                    </div>
+                  </form>
+              </nav>
+            </div>
+          </div>
+        </div>
 
 
 
@@ -28,7 +32,7 @@
     
     
     
-      <div id="container">
+      <div id="container" class="container-mobile-device">
         <ul class="list-group list-unstyled"></ul>
 
           <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog"  aria-hidden="true">
