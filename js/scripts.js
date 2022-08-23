@@ -44,7 +44,7 @@ function loadList() {
          detailsUrl: item.url
        };//response to promise
        add(pokemon);
-       console.log(pokemon); //adds all pokemon in console
+      //  console.log(pokemon); //adds all pokemon in console
      });
    }).catch(function (e) {
      console.log(e);//error
@@ -107,6 +107,8 @@ function loadList() {
 
 
 
+
+
 return {
    getAll: getAll,
    add:add,
@@ -120,8 +122,41 @@ return {
 })();
 
 
+function findPokemon(findName) {
+  pokemonListRepository.getAll().forEach(function (pokemon){
+    if (pokemon.name.indexOf(findName) > -1) {
+      pokemonListRepository.addListItem(pokemon)
+    }
+  })
+}
+
+
+let searchForm = document.querySelector('#search-form');
+searchForm.addEventListener('keyup', function(event){
+  document.getElementById('list-group1').innerHTML="";
+  findPokemon(searchForm.value);
+})
+
+
+
+
+
+
 pokemonListRepository.loadList().then(function () {
 pokemonListRepository.getAll().forEach(function (pokemon) {
    pokemonListRepository.addListItem(pokemon);
    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
