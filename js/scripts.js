@@ -1,8 +1,8 @@
 // //Pokemon JS Project
 
-let pokemonListRepository = (function () {  
-let pokemonList = [];
-let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+const pokemonListRepository = (function () {  
+const pokemonList = [];
+const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 
 
@@ -16,14 +16,14 @@ function add(pokemon) {
 
 
 function addListItem(pokemon) {
-   let pokelist = document.querySelector('.list-group');
-   let listItem = document.createElement('li');
+   const pokelist = document.querySelector('.list-group');
+   const listItem = document.createElement('li');
    listItem.classList.add('group-list-item');
-   let button = document.createElement('button');
+   const button = document.createElement('button');
    button.innerText = pokemon.name;
    button.classList.add('button');
    button.classList.add('btn', 'btn-primary', 'btn-lg');
-   button.addEventListener('click', function(event) {
+   button.addEventListener('click', function() {
       showDetails(pokemon)
    });
    button.setAttribute('data-target', '#pokemonModal');
@@ -31,6 +31,8 @@ function addListItem(pokemon) {
    listItem.appendChild(button); 
    pokelist.appendChild(listItem);
 }
+
+
 
 
 
@@ -51,6 +53,7 @@ function loadList() {
    })
  }
 
+ 
 
  function loadDetails(item) {
    let url = item.detailsUrl;
@@ -60,7 +63,7 @@ function loadList() {
      // Now we add the details to the item
      item.imageUrl = details.sprites.front_default;
      item.height = details.height;
-     item.ability = details.abilities.map((ability) => ability.ability.name).join(', ');;
+     item.ability = details.abilities.map((ability) => ability.ability.name).join(', ');
      item.weight = details.weight;
      item.type = item.types = details.types.map((type) => type.type.name).join(', '); //reponse to promise
    }).catch(function (e) {
@@ -80,21 +83,20 @@ function loadList() {
 
 
  function showModal(pokemon) {
-  let modalBody = $('.modal-body');
-  let modalTitle = $('.modal-title');
-  let modalHeader = $('.modal-header');
+  const modalBody = $('.modal-body');
+  const modalTitle = $('.modal-title');
 
   modalBody.empty();
   modalTitle.empty();
  
 
-  let nameElement = $('<h3>' + pokemon.name + '<h3>');
-  let imageElement = $('<img class="modal-img" width=30%>');
+  const nameElement = $('<h3>' + pokemon.name + '<h3>');
+  const imageElement = $('<img class="modal-img" width=30%>');
   imageElement.attr('src', pokemon.imageUrl);
-  let heightElement = $('<p>' + 'Height: ' + pokemon.height + '<p>');
-  let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '<p>');
-  let typeElement = $('<p>' + 'Type: ' + pokemon.types + '<p>');
-  let abilityElement = $('<p>' + 'Abilities: ' + pokemon.ability + '<p>');
+  const heightElement = $('<p>' + 'Height: ' + pokemon.height + '<p>');
+  const weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '<p>');
+  const typeElement = $('<p>' + 'Type: ' + pokemon.types + '<p>');
+  const abilityElement = $('<p>' + 'Abilities: ' + pokemon.ability + '<p>');
 
   modalTitle.append(nameElement);
   modalBody.append(imageElement);
@@ -131,11 +133,13 @@ function findPokemon(findName) {
 }
 
 
-let searchForm = document.querySelector('#search-form');
-searchForm.addEventListener('keyup', function(event){
-  document.getElementById('list-group1').innerHTML="";
+const searchForm = document.querySelector('#search-form');
+searchForm.addEventListener('keyup', function(){
+  document.getElementById('list-group1').innerHTML='';
   findPokemon(searchForm.value);
 })
+
+
 
 
 
