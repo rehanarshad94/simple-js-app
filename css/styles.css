@@ -40,5 +40,22 @@ body {
 }
 
 
+@media screen and (max-width: 560px){
+  button {
+    width: 80%;
+    height: auto;
+    margin-top: 10px;
+  }
 
+  .navbar-brand {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
 
+  .form-control {
+    text-align: center;
+    font-variant: small-caps;
+  }
+  
+};
