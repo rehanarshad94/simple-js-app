@@ -61,8 +61,8 @@ function loadList() {
        add(pokemon);
       //  console.log(pokemon); //adds all pokemon in console
      });
-   }).catch((error) => {
-     console.log('error');//error
+   }).catch((e) => {
+     console.log(e);//error
    })
  }
 
@@ -83,8 +83,8 @@ function loadList() {
      item.ability = details.abilities.map((ability) => ability.ability.name).join(', ');
      item.weight = details.weight;
      item.type = item.types = details.types.map((type) => type.type.name).join(', '); //reponse to promise
-   }).catch((error) => {
-     console.log('error'); //error
+   }).catch((e) => {
+     console.log(e); //error
    });
  }
 
