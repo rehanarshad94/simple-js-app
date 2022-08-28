@@ -25,10 +25,10 @@ const pokemonListRepository = (function () {
    * @param {*} pokemon - pokemon object
    */
   function addListItem(pokemon) {
-    const pokelist = document.querySelector(".list-group");
-    const listItem = document.createElement("li");
+    let pokelist = document.querySelector(".list-group");
+    let listItem = document.createElement("li");
     listItem.classList.add("group-list-item");
-    const button = document.createElement("button");
+    let button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("button");
     button.classList.add("btn-outline-light", "btn-primary", "btn-lg");
@@ -109,19 +109,19 @@ const pokemonListRepository = (function () {
    * @param {*} pokemon - pokemon object
    */
   function showModal(pokemon) {
-    const modalBody = $(".modal-body");
-    const modalTitle = $(".modal-title");
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
 
     modalBody.empty();
     modalTitle.empty();
 
-    const nameElement = $("<h3>" + pokemon.name + "<h3>");
-    const imageElement = $("<img class='modal-img' width=30%>");
+    let nameElement = $("<h3>" + pokemon.name + "<h3>");
+    let imageElement = $("<img class='modal-img' width=30%>");
     imageElement.attr("src", pokemon.imageUrl);
-    const heightElement = $("<p>" + "Height: " + pokemon.height + "<p>");
-    const weightElement = $("<p>" + "Weight: " + pokemon.weight + "<p>");
-    const typeElement = $("<p>" + "Type: " + pokemon.types + "<p>");
-    const abilityElement = $("<p>" + "Abilities: " + pokemon.ability + "<p>");
+    let heightElement = $("<p>" + "Height: " + pokemon.height + "<p>");
+    let weightElement = $("<p>" + "Weight: " + pokemon.weight + "<p>");
+    let typeElement = $("<p>" + "Type: " + pokemon.types + "<p>");
+    let abilityElement = $("<p>" + "Abilities: " + pokemon.ability + "<p>");
 
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
@@ -149,7 +149,7 @@ function findPokemon(findName) {
   });
 }
 
-const searchForm = document.querySelector("#search-form");
+let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("keyup", () => {
   document.getElementById("list-group1").innerHTML = "";
   findPokemon(searchForm.value);
