@@ -5,16 +5,26 @@ const pokemonList = [];
 const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 
-
+/**
+ * This function gets all of the pokemon's
+ * @returns - pokemon list
+ */
 function getAll () {
    return (pokemonList);
 }
 
+/**
+ * This function adds new pokmon to array
+ * @param {*} pokemon - pokemon object
+ */
 function add(pokemon) {
    pokemonList.push(pokemon);
 }
 
-
+/**
+ * This function takes a pokemon object and appends it to an unordered list as list item
+ * @param {*} pokemon - pokemon object
+ */
 function addListItem(pokemon) {
    const pokelist = document.querySelector('.list-group');
    const listItem = document.createElement('li');
@@ -22,8 +32,8 @@ function addListItem(pokemon) {
    const button = document.createElement('button');
    button.innerText = pokemon.name;
    button.classList.add('button');
-   button.classList.add('btn', 'btn-primary', 'btn-lg');
-   button.addEventListener('click', function() {
+   button.classList.add('btn-outline-light', 'btn-primary', 'btn-lg');
+   button.addEventListener('click', () => {
       showDetails(pokemon)
    });
    button.setAttribute('data-target', '#pokemonModal');
@@ -35,11 +45,14 @@ function addListItem(pokemon) {
 
 
 
-
+/**
+ * This function calls the pokemon api and gets the first 150 pokemon's
+ * @returns - a promise object
+ */
 function loadList() {
-   return fetch(apiUrl).then(function (response) {
+   return fetch(apiUrl).then((response) => {
      return response.json();//promise
-   }).then(function (json) {
+   }).then((json) => {
      json.results.forEach(function (item) {
        let pokemon = {
          name: item.name,
@@ -48,40 +61,50 @@ function loadList() {
        add(pokemon);
       //  console.log(pokemon); //adds all pokemon in console
      });
-   }).catch(function (e) {
-     console.log(e);//error
+   }).catch((error) => {
+     console.log('error');//error
    })
  }
 
  
-
+/**
+ * This function shows the stats for the pokemon's
+ * @param {*} item - item object
+ * @returns - stats of pokemon's
+ */
  function loadDetails(item) {
    let url = item.detailsUrl;
-   return fetch(url).then(function (response) {
+   return fetch(url).then((response) => {
      return response.json();//promise
-   }).then(function (details) {
+   }).then((details) => {
      // Now we add the details to the item
      item.imageUrl = details.sprites.front_default;
      item.height = details.height;
      item.ability = details.abilities.map((ability) => ability.ability.name).join(', ');
      item.weight = details.weight;
      item.type = item.types = details.types.map((type) => type.type.name).join(', '); //reponse to promise
-   }).catch(function (e) {
-     console.log(e); //error
+   }).catch((error) => {
+     console.log('error'); //error
    });
  }
 
 
-
+/**
+ * This function shows details for pokemon's
+ * @param {*} pokemon - pokemon object
+ */
  function showDetails(pokemon) {
-   pokemonListRepository.loadDetails(pokemon).then(function () {
+   pokemonListRepository.loadDetails(pokemon).then(() => {
      showModal(pokemon);
     //  console.log(pokemon);
    });
  }
 
 
-
+/**
+ * This function displays modal for individual pokemon's with stats
+ * @param {*} pokemon - pokemon object
+ */
  function showModal(pokemon) {
   const modalBody = $('.modal-body');
   const modalTitle = $('.modal-title');
@@ -125,7 +148,7 @@ return {
 
 
 function findPokemon(findName) {
-  pokemonListRepository.getAll().forEach(function (pokemon){
+  pokemonListRepository.getAll().forEach((pokemon) => {
     if (pokemon.name.indexOf(findName) > -1) {
       pokemonListRepository.addListItem(pokemon)
     }
@@ -134,7 +157,7 @@ function findPokemon(findName) {
 
 
 const searchForm = document.querySelector('#search-form');
-searchForm.addEventListener('keyup', function(){
+searchForm.addEventListener('keyup', () => {
   document.getElementById('list-group1').innerHTML='';
   findPokemon(searchForm.value);
 })
@@ -142,25 +165,8 @@ searchForm.addEventListener('keyup', function(){
 
 
 
-
-
-
-
-pokemonListRepository.loadList().then(function () {
-pokemonListRepository.getAll().forEach(function (pokemon) {
+pokemonListRepository.loadList().then(() => {
+pokemonListRepository.getAll().forEach((pokemon) => {
    pokemonListRepository.addListItem(pokemon);
    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
